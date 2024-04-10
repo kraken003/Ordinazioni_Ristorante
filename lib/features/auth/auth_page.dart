@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'auth_controller.dart'; // Assicurati che il percorso qui sia corretto
+import 'auth_controller.dart';
 
 class AuthPage extends GetView<AuthController> {
   const AuthPage({Key? key}) : super(key: key);
