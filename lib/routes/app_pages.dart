@@ -7,9 +7,9 @@ import '../features/auth/auth_page.dart';
 class AppPages{
   static final routes = [
     GetPage(
-      name: Routes.LOGIN,
-      page: () => const LoginPage(),
-      binding: LoginBinding()
+      name: Routes.AUTH,
+      page: () => const AuthPage(),
+      binding: AuthBinding()
     ),
 
     /*
