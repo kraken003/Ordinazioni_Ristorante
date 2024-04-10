@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "39357918326",
+    "project_id": "ordinazioni-ristorante-flutter",
+    "storage_bucket": "ordinazioni-ristorante-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:39357918326:android:f728c90cdaacbb8b3f0357",
+        "android_client_info": {
+          "package_name": "com.example.ordinazioni_ristorante_flutter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCd-HPuxQerLwJepWCTsOS50-qx5i62fUs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
