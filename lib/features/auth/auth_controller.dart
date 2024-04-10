@@ -35,9 +35,9 @@ class AuthController extends GetxController {
   void signUp(String email, String password) async {
     try {
       await _auth.createUserWithEmailAndPassword(email: email.trim(), password: password.trim());
-      Get.offAllNamed(Routes.HOME); // O naviga alla pagina che preferisci dopo la registrazione
+      Get.offAllNamed(Routes.HOME);
     } catch (e) {
-      Get.snackbar('Errore', 'Impossibile registrare l\'utente: ${e.toString()}');
+      Get.snackbar('Errore', 'Impossibile registrare l\'utente');
     }
   }
 
