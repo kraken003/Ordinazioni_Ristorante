@@ -9,13 +9,14 @@ class AuthPage extends GetView<AuthController> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
             colors: [
+              Color(0xFFED6100),
               Colors.black,
-              Colors.pink.shade100,
+              Colors.white,
             ],
           ),
         ),

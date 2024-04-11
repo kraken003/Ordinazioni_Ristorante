@@ -3,6 +3,10 @@ import 'package:ordinazioni_ristorante_flutter/routes/routes.dart';
 
 import '../features/auth/auth_binding.dart';
 import '../features/auth/auth_page.dart';
+import '../features/home/home_binding.dart';
+import '../features/home/home_page.dart';
+import '../features/profiles/profile_binding.dart';
+import '../features/profiles/profile_page.dart';
 
 class AppPages{
   static final routes = [
@@ -11,13 +15,18 @@ class AppPages{
       page: () => const AuthPage(),
       binding: AuthBinding()
     ),
-
-    /*
     GetPage(
         name: Routes.HOME,
-        page: () => const HomePage(),
+        page: () => HomePage(),
         binding: HomeBinding()
     ),
+    GetPage(
+        name: Routes.PROFILE,
+        page: () => ProfilePage(),
+        binding: ProfileBinding()
+    ),
+
+    /*
     GetPage(
         name: Routes.CART,
         page: () => const CartPage(),
@@ -27,11 +36,6 @@ class AppPages{
         name: Routes.MENU,
         page: () => const MenuPage(),
         binding: MenuBinding()
-    ),
-    GetPage(
-        name: Routes.PROFILE,
-        page: () => const ProfilePage(),
-        binding: ProfileBinding()
     ),
     */
 

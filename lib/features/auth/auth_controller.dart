@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ordinazioni_ristorante_flutter/routes/routes.dart';
 
 class AuthController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -34,11 +36,19 @@ class AuthController extends GetxController {
 
   void signUp(String email, String password) async {
     try {
-      await _auth.createUserWithEmailAndPassword(email: email.trim(), password: password.trim());
+      UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
+          email: email.trim(),
+          password: password.trim()
+      );
+      String userId = userCredential.user!.uid;
+      await _firestore.collection('users').doc(userId).set({
+        'email': email.trim(),
+        'profilePicUrl': null,
+      });
       Get.offAllNamed(Routes.HOME);
     } catch (e) {
-      Get.snackbar('Errore', 'Impossibile registrare l\'utente');
+      Get.snackbar('Errore', 'Impossibile registrare l\'utente: ${e.toString()}');
+      print(e.toString());
     }
   }
-
 }
