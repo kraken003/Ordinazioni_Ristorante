@@ -57,7 +57,6 @@ class HomePage extends GetView<HomeController> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Logo del ristorante
             Image(image: AssetImage('images/sushi_harmony_logo.png')),
           ],
         ),

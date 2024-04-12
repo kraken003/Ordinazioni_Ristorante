@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:ordinazioni_ristorante_flutter/features/home/home_page.dart';
 
 import '../../routes/routes.dart';
+import '../menu/menu_page.dart';
 
 class HomeController extends GetxController {
   var tabIndex = 0.obs;
@@ -39,10 +40,10 @@ class HomeController extends GetxController {
     tabIndex.value = index;
     switch (index) {
       case 0:
-        Get.to(() => HomePage()); // Sostituisci con la tua pagina del menù
+        Get.toNamed('/menu');
         break;
       case 1:
-        Get.to(() => HomePage());
+        Get.toNamed('/cart');
         break;
       default:
     }
