@@ -1,14 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-
+import '../cart/cart_controller.dart';
 import '../utils/models.dart';
 
 class AntipastiController extends GetxController {
   final RxList<Dish> dishes = <Dish>[].obs;
-  final RxList<Dish> cart = <Dish>[].obs;
 
   @override
   void onInit() {
@@ -27,7 +23,15 @@ class AntipastiController extends GetxController {
   }
 
   void addToCart(Dish dish) {
-    cart.add(dish);
+    final cartController = Get.find<CartController>();
+    cartController.addToCart(dish, dish.quantity);
     Get.snackbar('Aggiunto al carrello', 'Hai aggiunto ${dish.name} al carrello!');
+  }
+
+  void updateQuantity(Dish dish, int quantity) {
+    var foundDish = dishes.firstWhereOrNull((d) => d.id == dish.id);
+    if (foundDish != null) {
+      foundDish.quantity = quantity;
+    }
   }
 }

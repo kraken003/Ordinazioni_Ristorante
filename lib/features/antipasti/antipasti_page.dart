@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:get/get_state_manager/src/simple/get_view.dart';
-
+import 'package:get/get.dart';
 import 'antipasti_controller.dart';
 import '../utils/models.dart';
 
@@ -43,8 +41,12 @@ class AntipastiPage extends GetView<AntipastiController> {
                     padding: const EdgeInsets.all(8.0),
                     child: Text('${dish.price.toStringAsFixed(2)} €', style: TextStyle(fontSize: 15)),
                   ),
-                  QuantityControl(dish: dish),
-                  SizedBox(height: 8),
+                  QuantityControl(
+                      dish: dish,
+                      onSelected: (quantity) {
+                        controller.updateQuantity(dish, quantity);
+                      }
+                  ),
                   ElevatedButton(
                     onPressed: () => controller.addToCart(dish),
                     child: Text('Aggiungi al carrello'),
@@ -65,7 +67,9 @@ class AntipastiPage extends GetView<AntipastiController> {
 
 class QuantityControl extends StatefulWidget {
   final Dish dish;
-  const QuantityControl({Key? key, required this.dish}) : super(key: key);
+  final Function(int) onSelected;
+
+  const QuantityControl({Key? key, required this.dish, required this.onSelected}) : super(key: key);
 
   @override
   _QuantityControlState createState() => _QuantityControlState();
@@ -77,6 +81,7 @@ class _QuantityControlState extends State<QuantityControl> {
   void increment() {
     setState(() {
       quantity++;
+      widget.onSelected(quantity);
     });
   }
 
@@ -84,6 +89,7 @@ class _QuantityControlState extends State<QuantityControl> {
     if (quantity > 1) {
       setState(() {
         quantity--;
+        widget.onSelected(quantity);
       });
     }
   }

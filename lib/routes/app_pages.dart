@@ -5,6 +5,8 @@ import '../features/antipasti/antipasti_binding.dart';
 import '../features/antipasti/antipasti_page.dart';
 import '../features/auth/auth_binding.dart';
 import '../features/auth/auth_page.dart';
+import '../features/cart/cart_binding.dart';
+import '../features/cart/cart_page.dart';
 import '../features/home/home_binding.dart';
 import '../features/home/home_page.dart';
 import '../features/menu/menu_binding.dart';
@@ -40,13 +42,13 @@ class AppPages{
         binding: AntipastiBinding()
     ),
 
-    /*
     GetPage(
         name: Routes.CART,
-        page: () => const CartPage(),
+        page: () => CartPage(),
         binding: CartBinding()
     ),
 
+    /*
     GetPage(
         name: Routes.NIGIRI,
         page: () => const NigiriPage(),

@@ -5,6 +5,7 @@ import 'package:ordinazioni_ristorante_flutter/routes/routes.dart';
 
 
 import 'package:firebase_core/firebase_core.dart';
+import 'features/cart/cart_binding.dart';
 import 'firebase_options.dart';
 
 
@@ -13,6 +14,7 @@ void main() async{
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  CartBinding().dependencies();
   runApp(const MyApp());
 }
 
