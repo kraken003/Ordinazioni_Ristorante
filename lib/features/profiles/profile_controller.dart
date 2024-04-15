@@ -4,10 +4,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'dart:io';
+import '../utils/order.dart';
 
 class ProfileController extends GetxController {
   var profileImageUrl = ''.obs;
   var userEmail = ''.obs;
+  var orders = <RestaurantOrder>[].obs;
   var isLoading = false.obs;
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -19,6 +21,7 @@ class ProfileController extends GetxController {
   void onReady() {
     super.onReady();
     fetchUserData();
+    fetchOrders();
   }
 
   void fetchUserData() async {
@@ -36,6 +39,18 @@ class ProfileController extends GetxController {
       Get.snackbar('Errore', 'Impossibile caricare i dati utente');
     } finally {
       isLoading(false);
+    }
+  }
+
+  void fetchOrders() {
+    var user = _auth.currentUser;
+    if (user != null) {
+      _firestore.collection('orders')
+          .where('userId', isEqualTo: user.uid)
+          .orderBy('orderTime', descending: true)
+          .snapshots().listen((snapshot) {
+        orders.value = snapshot.docs.map((doc) => RestaurantOrder.fromFirestore(doc)).toList();
+      });
     }
   }
 

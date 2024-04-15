@@ -1,10 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:ordinazioni_ristorante_flutter/features/home/home_page.dart';
 
 import '../../routes/routes.dart';
-import '../menu/menu_page.dart';
 
 class HomeController extends GetxController {
   var tabIndex = 0.obs;

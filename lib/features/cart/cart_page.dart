@@ -8,7 +8,10 @@ class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Carrello")),
+      appBar: AppBar(
+          title: Text("Carrello"),
+        backgroundColor: Color(0xFFED6100),
+      ),
       body: Obx(() {
         return Column(
           children: [
@@ -38,10 +41,11 @@ class CartPage extends StatelessWidget {
                 children: [
                   Text('Totale: ${cartController.total.toStringAsFixed(2)} €', style: TextStyle(fontSize: 20)),
                   ElevatedButton(
-                    onPressed: () {
-                      //Logica per concludere l'ordine
-                    },
-                    child: Text('Ordina'),
+                    onPressed: () => _showConfirmationDialog(context),
+                    child: Text('Ordina', style: TextStyle(color: Colors.white),),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                    ),
                   ),
                 ],
               ),
@@ -50,5 +54,36 @@ class CartPage extends StatelessWidget {
         );
       }),
     );
+  }
+
+  void _showConfirmationDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext dialogContext) {
+        return AlertDialog(
+          title: Text("Conferma"),
+          content: Text("Vuoi completare l'ordine?"),
+          actions: <Widget>[
+            TextButton(
+                onPressed: () => Navigator.of(dialogContext).pop(),
+                child: Text("NO")
+            ),
+            TextButton(
+                onPressed: () {
+                  Navigator.of(dialogContext).pop();
+                  _completeOrder(context);
+                },
+                child: Text("SÌ")
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _completeOrder(BuildContext context) {
+    cartController.saveOrder();
+    Navigator.of(context).pop();
   }
 }

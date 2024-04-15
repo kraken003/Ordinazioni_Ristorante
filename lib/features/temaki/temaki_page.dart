@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'antipasti_controller.dart';
 import '../utils/models.dart';
+import 'temaki_controller.dart';
 
-class AntipastiPage extends GetView<AntipastiController> {
+class TemakiPage extends GetView<TemakiController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text("Antipasti"),
+          title: const Text("Temaki"),
         backgroundColor: Color(0xFFED6100),
       ),
       body: Obx(() {
@@ -24,10 +24,10 @@ class AntipastiPage extends GetView<AntipastiController> {
             final dish = controller.dishes[index];
             return Card(
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              side: const BorderSide(
-              color: Colors.black,
-            )),
+                  borderRadius: BorderRadius.circular(20),
+                  side: const BorderSide(
+                    color: Colors.black,
+                  )),
               clipBehavior: Clip.antiAlias,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -60,7 +60,7 @@ class AntipastiPage extends GetView<AntipastiController> {
                     child: Text('Aggiungi al carrello'),
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,
-                      backgroundColor: Colors.black,
+                      backgroundColor: Theme.of(context).colorScheme.secondary,
                     ),
                   ),
                 ],

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../utils/order_details_page.dart';
 import 'profile_controller.dart';
+import 'package:intl/intl.dart';
 
 class ProfilePage extends GetView<ProfileController> {
   @override
@@ -35,7 +38,31 @@ class ProfilePage extends GetView<ProfileController> {
               ),
               SizedBox(height: 20),
               Obx(() => Text(controller.userEmail.value)),
-              // Bisogna inserire lo storico degli ordini
+              SizedBox(height: 20),
+              Text("Storico Ordini", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              Obx(() => ListView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: controller.orders.length,
+                itemBuilder: (context, index) {
+                  final order = controller.orders[index];
+                  return Column(
+                    children: [
+                      ListTile(
+                        title: Text("Ordine: ${order.id}"),
+                        subtitle: Text("Totale: €${order.total.toStringAsFixed(2)}\nData: ${DateFormat('dd/MM/yyyy hh:mm').format(order.orderTime)}"),
+                        leading: Icon(Icons.receipt_long, color: Colors.black),
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => OrderDetailsPage(order: order),
+                          ));
+                        },
+                      ),
+                      if (index < controller.orders.length - 1) Divider(),
+                    ],
+                  );
+                },
+              )),
             ],
           ),
         ),
@@ -43,4 +70,3 @@ class ProfilePage extends GetView<ProfileController> {
     );
   }
 }
-
